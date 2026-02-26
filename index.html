@@ -12,10 +12,7 @@
     font-family: Arial;
     overflow: hidden;
 
-    /* background image */
     background: url('bg.jpg') no-repeat center center/cover;
-
-    /* dark overlay for readability */
     background-color: rgba(0,0,0,0.35);
     background-blend-mode: darken;
   }
@@ -29,6 +26,13 @@
     color: white;
   }
 
+  .topline {
+    font-size: 18px;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    color: #ffd700;
+  }
+
   button {
     padding: 12px 25px;
     font-size: 18px;
@@ -38,7 +42,6 @@
     border-radius: 6px;
   }
 
-  /* transition screen */
   #transition {
     position: fixed;
     top: 0;
@@ -74,7 +77,8 @@
 <body>
 
 <div class="container">
-  <h2>Na Bolkr dikha do!</h2>
+  <div class="topline">write text here</div>
+  <h2>Na Bolkr dikha do</h2>
   <button onclick="showTransition()">Yes</button>
   <button id="noBtn">No</button>
 </div>
@@ -94,11 +98,16 @@ noBtn.addEventListener("mouseover", () => {
   if(count === 10) alert("You cannot escape destiny 😎");
   if(count === 30) alert("You still trying???? 😭");
 
-  const maxX = window.innerWidth - noBtn.offsetWidth;
-  const maxY = window.innerHeight - noBtn.offsetHeight;
+  const padding = 30;
 
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top = Math.random() * maxY + "px";
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+  const randomX = Math.max(padding, Math.random() * maxX);
+  const randomY = Math.max(padding, Math.random() * maxY);
+
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
 });
 
 function showTransition() {
@@ -112,5 +121,4 @@ function showTransition() {
 </script>
 
 </body>
-
 </html>
