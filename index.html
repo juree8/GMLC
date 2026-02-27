@@ -51,6 +51,28 @@
     margin-bottom: 8px;
     letter-spacing: 2px;
     color: #ffd700;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 1.2s ease forwards;
+  }
+
+  h2 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 1.2s ease forwards;
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   button {
@@ -65,7 +87,6 @@
     font-weight: bold;
   }
 
-  /* YES button pulse glow */
   .yes-btn {
     border-color: #00ff9c;
     box-shadow: 0 0 8px #00ff9c, 0 0 18px #00ff9c;
@@ -79,15 +100,9 @@
   }
 
   @keyframes pulseGlow {
-    0% {
-      box-shadow: 0 0 6px #00ff9c, 0 0 12px #00ff9c;
-    }
-    50% {
-      box-shadow: 0 0 16px #00ff9c, 0 0 34px #00ff9c;
-    }
-    100% {
-      box-shadow: 0 0 6px #00ff9c, 0 0 12px #00ff9c;
-    }
+    0% { box-shadow: 0 0 6px #00ff9c, 0 0 12px #00ff9c; }
+    50% { box-shadow: 0 0 16px #00ff9c, 0 0 34px #00ff9c; }
+    100% { box-shadow: 0 0 6px #00ff9c, 0 0 12px #00ff9c; }
   }
 
   .no-btn {
@@ -131,7 +146,7 @@
 
 <div class="container">
   <div class="topline">Do You Dare To Move Ahead?</div>
-  <h2>Na Bolkr dikha do !!</h2>
+  <h2>Choose wisely.</h2>
   <button class="yes-btn" onclick="showTransition()">Yes</button>
   <button id="noBtn" class="no-btn">No</button>
 </div>
