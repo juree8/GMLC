@@ -12,7 +12,6 @@
     font-family: Arial;
     overflow: hidden;
 
-    /* desktop background */
     background-image: url('bg.jpg');
     background-position: center center;
     background-size: cover;
@@ -22,7 +21,6 @@
     background-blend-mode: darken;
   }
 
-  /* phones in portrait */
   @media (orientation: portrait) {
     body {
       background-image: url('gb.jpg?v=2');
@@ -31,16 +29,8 @@
       background-repeat: no-repeat;
     }
 
-    .topline {
-      font-size: 22px;
-      letter-spacing: 2px;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-top: 6px;
-    }
-
+    .topline { font-size: 22px; }
+    h2 { font-size: 28px; }
     button {
       padding: 16px 36px;
       font-size: 20px;
@@ -48,9 +38,7 @@
     }
   }
 
-  #noBtn {
-    position: absolute;
-  }
+  #noBtn { position: absolute; }
 
   .container {
     text-align: center;
@@ -83,19 +71,9 @@
     box-shadow: 0 0 8px #00ff9c, 0 0 18px #00ff9c;
   }
 
-  .yes-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 14px #00ff9c, 0 0 30px #00ff9c;
-  }
-
   .no-btn {
     border-color: #ff3b3b;
     box-shadow: 0 0 8px #ff3b3b, 0 0 18px #ff3b3b;
-  }
-
-  .no-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 14px #ff3b3b, 0 0 30px #ff3b3b;
   }
 
   #transition {
@@ -143,18 +121,27 @@
   <div class="message">Opening something special....</div>
 </div>
 
+<!-- audio element -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
 <script>
 const noBtn = document.getElementById("noBtn");
+const sound = document.getElementById("clickSound");
 let count = 0;
 
-/* vibration helper */
+function playSound() {
+  sound.currentTime = 0;
+  sound.play();
+}
+
 function vibrate(ms = 40) {
   if (navigator.vibrate) navigator.vibrate(ms);
 }
 
-/* NO button escape */
+/* escape when cursor approaches */
 noBtn.addEventListener("mouseover", () => {
   count++;
+  playSound();
   vibrate(25);
 
   if(count === 5) alert("Stop trying 😭");
@@ -166,15 +153,19 @@ noBtn.addEventListener("mouseover", () => {
   const maxX = window.innerWidth - noBtn.offsetWidth - padding;
   const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
-  const randomX = Math.max(padding, Math.random() * maxX);
-  const randomY = Math.max(padding, Math.random() * maxY);
-
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
+  noBtn.style.left = Math.max(padding, Math.random() * maxX) + "px";
+  noBtn.style.top = Math.max(padding, Math.random() * maxY) + "px";
 });
 
-/* tap feedback for YES */
+/* mobile tap attempt */
+noBtn.addEventListener("touchstart", () => {
+  playSound();
+  vibrate(25);
+});
+
+/* YES click */
 function showTransition() {
+  playSound();
   vibrate(60);
 
   const screen = document.getElementById("transition");
