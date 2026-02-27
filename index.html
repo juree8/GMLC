@@ -33,13 +33,41 @@
     color: #ffd700;
   }
 
+  /* oval neon buttons */
   button {
-    padding: 12px 25px;
+    padding: 14px 36px;
     font-size: 18px;
     margin: 10px;
     cursor: pointer;
-    border: none;
-    border-radius: 6px;
+    border-radius: 40px;
+    border: 2px solid transparent;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(4px);
+  }
+
+  /* YES neon green */
+  .yes-btn {
+    border-color: #00ff9c;
+    box-shadow: 0 0 8px #00ff9c, 0 0 18px #00ff9c;
+  }
+
+  .yes-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 14px #00ff9c, 0 0 30px #00ff9c;
+  }
+
+  /* NO neon red */
+  .no-btn {
+    border-color: #ff3b3b;
+    box-shadow: 0 0 8px #ff3b3b, 0 0 18px #ff3b3b;
+  }
+
+  .no-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 14px #ff3b3b, 0 0 30px #ff3b3b;
   }
 
   #transition {
@@ -78,13 +106,13 @@
 
 <div class="container">
   <div class="topline">write text here</div>
-  <h2>Na Bolkr dikha do</h2>
-  <button onclick="showTransition()">Yes</button>
-  <button id="noBtn">No</button>
+  <h2>Na Bolkr dikha do !!</h2>
+  <button class="yes-btn" onclick="showTransition()">Yes</button>
+  <button id="noBtn" class="no-btn">No</button>
 </div>
 
 <div id="transition">
-  <div class="message">Opening something special...</div>
+  <div class="message">Opening something special....</div>
 </div>
 
 <script>
@@ -122,4 +150,3 @@ function showTransition() {
 
 </body>
 </html>
-
