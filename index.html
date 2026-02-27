@@ -13,15 +13,22 @@
     overflow: hidden;
 
     /* desktop background */
-    background: url('bg.jpg') no-repeat center center/cover;
+    background-image: url('bg.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
     background-color: rgba(0,0,0,0.35);
     background-blend-mode: darken;
   }
 
-  /* mobile background */
-  @media (max-width: 768px) {
+  /* mobile background override */
+  @media screen and (max-width: 768px) {
     body {
-      background: url('gb.jpg') no-repeat center center/cover;
+      background-image: url('gb.jpg') !important;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
     h2 {
