@@ -62,8 +62,6 @@
     background: rgba(255,255,255,0.08);
     color: white;
     font-weight: bold;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    backdrop-filter: blur(4px);
   }
 
   .yes-btn {
@@ -121,12 +119,12 @@
   <div class="message">Opening something special....</div>
 </div>
 
-<!-- audio element -->
-<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<!-- sound -->
+<audio id="escapeSound" src="click.mp3" preload="auto"></audio>
 
 <script>
 const noBtn = document.getElementById("noBtn");
-const sound = document.getElementById("clickSound");
+const sound = document.getElementById("escapeSound");
 let count = 0;
 
 function playSound() {
@@ -134,15 +132,20 @@ function playSound() {
   sound.play();
 }
 
-function vibrate(ms = 40) {
-  if (navigator.vibrate) navigator.vibrate(ms);
-}
-
-/* escape when cursor approaches */
-noBtn.addEventListener("mouseover", () => {
-  count++;
+/* DESKTOP: trigger when cursor gets near */
+noBtn.addEventListener("mouseenter", () => {
   playSound();
-  vibrate(25);
+  escapeButton();
+});
+
+/* MOBILE: trigger on touch */
+noBtn.addEventListener("touchstart", () => {
+  playSound();
+  escapeButton();
+});
+
+function escapeButton() {
+  count++;
 
   if(count === 5) alert("Stop trying 😭");
   if(count === 10) alert("You cannot escape destiny 😎");
@@ -155,19 +158,10 @@ noBtn.addEventListener("mouseover", () => {
 
   noBtn.style.left = Math.max(padding, Math.random() * maxX) + "px";
   noBtn.style.top = Math.max(padding, Math.random() * maxY) + "px";
-});
+}
 
-/* mobile tap attempt */
-noBtn.addEventListener("touchstart", () => {
-  playSound();
-  vibrate(25);
-});
-
-/* YES click */
+/* YES button */
 function showTransition() {
-  playSound();
-  vibrate(60);
-
   const screen = document.getElementById("transition");
   screen.classList.add("active");
 
